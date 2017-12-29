@@ -1,0 +1,21 @@
+@startuml
+
+autonumber
+
+   participant "Student"
+   participant "registration form"
+   participant "registration manager"
+   participant "math 101 course"
+
+		  activate "registration form"
+	  "Student" ->>  "registration form" : "fill in info"
+			  activate "registration form"
+	  "Student" ->>  "registration form" : "submit"
+			  activate "registration manager"
+	  "registration form" ->>  "registration manager" : "add to course (Joe, math 101)"
+			  "registration manager" ->>  "registration form" : "Joe Added"
+	  deactivate "registration manager"
+  			  "registration form" ->>  "Student" : "Registered"
+	  deactivate "registration form"
+
+@enduml

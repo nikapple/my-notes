@@ -1,0 +1,24 @@
+@startuml
+autonumber
+participant Student
+participant "registration form"
+participant "registration manager"
+participant "math 101 course"
+activate "Student"
+activate "registration form"
+Student ->> "registration form" : Fill in info
+Student ->> "registration form" : Submit
+activate "registration manager"
+"registration form" ->> "registration manager" : Add to course (Joe, math 101)
+activate "math 101 course"
+"registration manager" ->> "math 101 course" : Are you open?
+"math 101 course" ->> "registration manager" : ack
+"registration manager" ->> "math 101 course" : Add Joe
+"math 101 course" ->> "registration manager" : ack
+deactivate "math 101 course"
+"registration manager" ->> "registration form"  : Joe Added
+deactivate "registration manager"
+"registration form" ->> Student : Registered
+deactivate "registration form"
+deactivate "Student"
+@enduml

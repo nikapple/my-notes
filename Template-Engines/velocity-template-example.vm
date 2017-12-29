@@ -1,0 +1,21 @@
+@startuml
+autonumber
+loop
+participants
+
+
+activate [current-obj]
+
+loop
+if before type log entry then
+  activate [called-obj]
+  [current-obj] ->> [called-obj] : [message]
+
+if after type log entry then
+  [current-obj] ->> [called-obj] : [message]
+  deactivate [current-obj]
+endloop
+
+deactivate [called-obj]
+
+@enduml
