@@ -17,10 +17,21 @@ log entry construct | sequence diagram mapping
 --- | ---  
 type [before-or-after] | activate/deactivate participant
 [timestamp] | order of messages
-[current-object] | arrow source
+[current-object] (derived from log order based on timestamp) | arrow source
 [message] | message
-[target-object] | arrow destination
+[target-object]  (derived from logAspect message) | arrow destination
 [current-objects] as set| participants
+
+log pattern to parse is `%x *$^ %p *$^ %l *$^ %m%n`  delimter = `"*$^"`  
+
+pattern | details  
+--- | ---  
+%x | NDC
+%p | priority
+%l | logger-name, class and line number
+%m | LogAspect message - type, target class, method and timestamp
+
+
 
 - activate and deactivate object logic?
   - if before statement activate called object and then send message
@@ -42,6 +53,19 @@ type [before-or-after] | activate/deactivate participant
 - invoke another method in same object
 - invoke another method in another object
 - terminate
+
+OLD PARSING CODE
+Pattern.compile("timestamp=");
+			this.id = UUID.randomUUID().toString();
+			Matcher matcher = Pattern.compile("NDC=").matcher(logEvent);
+			while (matcher.find()) {
+				this.ndc = logEvent.substring(matcher.end(), logEvent.indexOf(" ", matcher.end()));
+			}
+			matcher = Pattern.compile("timestamp=").matcher(logEvent);
+			while (matcher.find()) {
+				this.timestamp = logEvent.substring(matcher.end(), matcher.end() + 19);
+			}
+			this.logMessage = logEvent;
 
 ---------
 

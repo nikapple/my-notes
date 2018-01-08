@@ -1,0 +1,59 @@
+timestamp=2017-12-28 14:43:30 NDC=5f508f1e-a534-48a5-9bdb-a5e70b708965 INFO  LogAspect:19  Before invoking com.readingmonitor.dao.UserDaoImpl.validateUser([com.readingmonitor.dto.User@30b1e386]) 1514452410687 On All methods
+
+timestamp=2018-01-02 13:24:36 NDC=5c37ccb8-4962-420e-b070-f2dc45b2edad INFO  LogAspect C[com.ideacrest.pluginapp.aspect.LogAspect]:19 l=[com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:19)]  Before invoking com.readingmonitor.controller.LoginController.processLogin([com.readingmonitor.dto.User@551ae001, org.springframework.validation.BeanPropertyBindingResult: 4 errors
+
+timestamp=2018-01-02 13:24:38 NDC=5c37ccb8-4962-420e-b070-f2dc45b2edad
+INFO
+LogAspect
+C[com.ideacrest.pluginapp.aspect.LogAspect]:32
+l=[com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:32)]
+After invoking
+com.readingmonitor.controller.LoginController.processLogin
+([com.readingmonitor.dto.User@551ae001, org.springframework.validation.BeanPropertyBindingResult: 4 errors
+
+
+timestamp=2018-01-02 13:24:36 NDC=5c37ccb8-4962-420e-b070-f2dc45b2edad INFO  LogAspect C[com.ideacrest.pluginapp.aspect.LogAspect]:32 l=[com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:32)]
+
+After invoking  org.hibernate.validator.internal.constraintvalidators.NotNullValidator.isValid([pass, org.hibernate.validator.internal.engine.constraintvalidation.ConstraintValidatorContextImpl@29c2c9e]):true 1514879676159 On All methods
+
+%x
+%-5p
+l=[%l]
+%m
+%n
+
+logger.info("Before invoking {}.{}({}) {} On All methods", proceedingJoinPoint.getTarget().getClass().getName(),
+				proceedingJoinPoint.getSignature().getName(), proceedingJoinPoint.getArgs(),
+				System.currentTimeMillis());
+
+logger.info("After invoking  {}.{}({}):{} {} On All methods",
+				proceedingJoinPoint.getTarget().getClass().getName(), proceedingJoinPoint.getSignature().getName(),
+				proceedingJoinPoint.getArgs(), result, System.currentTimeMillis()
+
+				------
+
+				a5eaa777-1dc2-41bf-a102-fc10ceb55d8e @ INFO @ com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:23) @ Before @ com.readingmonitor.controller.BookController @ displayAllBooksByTopic @ 19852796625428
+				a5eaa777-1dc2-41bf-a102-fc10ceb55d8e @ INFO @ com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:23) @ Before @ com.readingmonitor.service.BookServiceImpl @ getAllBooksByTopic @ 19854272927229
+				a5eaa777-1dc2-41bf-a102-fc10ceb55d8e @ INFO @ com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:23) @ Before @ com.readingmonitor.dao.BookDaoImpl @ getAllBooksByTopic @ 19854339641147
+				a5eaa777-1dc2-41bf-a102-fc10ceb55d8e @ INFO @ com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:35) @ After @ com.readingmonitor.dao.BookDaoImpl @ getAllBooksByTopic @ 19855629290538
+				a5eaa777-1dc2-41bf-a102-fc10ceb55d8e @ INFO @ com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:35) @ After @ com.readingmonitor.service.BookServiceImpl @ getAllBooksByTopic @ 19855629796131
+				a5eaa777-1dc2-41bf-a102-fc10ceb55d8e @ INFO @ com.ideacrest.pluginapp.aspect.LogAspect.logMethodUsingAspect(LogAspect.java:35) @ After @ com.readingmonitor.controller.BookController @ displayAllBooksByTopic @ 19855632176003
+
+
+				#set $log1 = $logEntries.get(0)
+				activate $log1.callerObject
+				$log1.callerObject --> $log1.calledObject: $logEntry.message
+				$logEntries.remove($log1)
+
+				*
+				Before 12962076697356 com.readingmonitor.controller.LoginController com.readingmonitor.controller.LoginController processLogin
+				Before 12962426027171 com.readingmonitor.controller.LoginController com.readingmonitor.service.UserServiceImpl validateUser
+				Before 12962439712754 com.readingmonitor.service.UserServiceImpl com.readingmonitor.dao.UserDaoImpl validateUser
+				After 12963674608062 com.readingmonitor.dao.UserDaoImpl com.readingmonitor.dao.UserDaoImpl validateUser
+				After 12963675156703 com.readingmonitor.dao.UserDaoImpl com.readingmonitor.service.UserServiceImpl validateUser
+				Before 12963822383204 com.readingmonitor.service.UserServiceImpl com.readingmonitor.service.UserServiceImpl getUserInfo
+				Before 12963822925043 com.readingmonitor.service.UserServiceImpl com.readingmonitor.dao.UserDaoImpl getUserInfo
+				After 12964050252094 com.readingmonitor.dao.UserDaoImpl com.readingmonitor.dao.UserDaoImpl getUserInfo
+				After 12964050878738 com.readingmonitor.dao.UserDaoImpl com.readingmonitor.service.UserServiceImpl getUserInfo
+				After 12964194281965 com.readingmonitor.service.UserServiceImpl com.readingmonitor.controller.LoginController processLogin
+				*/

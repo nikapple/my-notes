@@ -1,0 +1,30 @@
+
+@startuml
+
+autonumber
+
+   participant "com.readingmonitor.dao.UserDaoImpl"
+   participant "com.readingmonitor.service.UserServiceImpl"
+   participant "com.readingmonitor.controller.LoginController"
+
+		 	activate "com.readingmonitor.controller.LoginController"
+	 		 		[->>"com.readingmonitor.controller.LoginController" : processLogin
+	 		 		 	activate "com.readingmonitor.service.UserServiceImpl"
+	 		 		"com.readingmonitor.controller.LoginController" ->>  "com.readingmonitor.service.UserServiceImpl" : validateUser
+	 		 		 	activate "com.readingmonitor.dao.UserDaoImpl"
+	 		 		"com.readingmonitor.service.UserServiceImpl" ->>  "com.readingmonitor.dao.UserDaoImpl" : validateUser
+	 		 		 		 		 "com.readingmonitor.dao.UserDaoImpl" ->> "com.readingmonitor.service.UserServiceImpl" : validateUser
+	 		 				deactivate "com.readingmonitor.dao.UserDaoImpl"
+			 		 		 		 "com.readingmonitor.service.UserServiceImpl" ->> "com.readingmonitor.controller.LoginController" : validateUser
+	 		 		 		 	activate "com.readingmonitor.service.UserServiceImpl"
+	 		 		"com.readingmonitor.controller.LoginController" ->>  "com.readingmonitor.service.UserServiceImpl" : getUserInfo
+	 		 		 	activate "com.readingmonitor.dao.UserDaoImpl"
+	 		 		"com.readingmonitor.service.UserServiceImpl" ->>  "com.readingmonitor.dao.UserDaoImpl" : getUserInfo
+	 		 		 		 		 "com.readingmonitor.dao.UserDaoImpl" ->> "com.readingmonitor.service.UserServiceImpl" : getUserInfo
+	 		 				deactivate "com.readingmonitor.dao.UserDaoImpl"
+			 		 		 		 "com.readingmonitor.service.UserServiceImpl" ->> "com.readingmonitor.controller.LoginController" : getUserInfo
+	 		 				deactivate "com.readingmonitor.service.UserServiceImpl"
+			 		 		 		[<- A: "com.readingmonitor.controller.LoginController" : processLogin
+	 		 				deactivate "com.readingmonitor.controller.LoginController"
+
+@enduml

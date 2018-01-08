@@ -5,8 +5,7 @@ autonumber
    participant "Student"
    participant "registration form"
    participant "registration manager"
-   participant "math 101 course"
-
+   
 		  activate "registration form"
 	  "Student" ->>  "registration form" : "fill in info"
 			  activate "registration form"

@@ -1,0 +1,27 @@
+@startuml
+
+autonumber
+
+   participant "com.readingmonitor.controller.BookController"
+   participant "com.readingmonitor.dao.BookDaoImpl"
+   participant "com.readingmonitor.service.BookServiceImpl"
+
+	 	activate "com.readingmonitor.controller.BookController"
+	  	"com.readingmonitor.controller.BookController" ->>  "com.readingmonitor.controller.BookController" : displayAllBooksByTopic
+
+	 	activate "com.readingmonitor.service.BookServiceImpl"
+	  	"com.readingmonitor.controller.BookController" ->>  "com.readingmonitor.service.BookServiceImpl" : getAllBooksByTopic
+
+	 	activate "com.readingmonitor.dao.BookDaoImpl"
+	  	"com.readingmonitor.service.BookServiceImpl" ->>  "com.readingmonitor.dao.BookDaoImpl" : getAllBooksByTopic
+			  	"com.readingmonitor.dao.BookDaoImpl" ->>  "com.readingmonitor.dao.BookDaoImpl" : getAllBooksByTopic
+	  	 deactivate "com.readingmonitor.dao.BookDaoImpl"
+
+  			  	"com.readingmonitor.dao.BookDaoImpl" ->>  "com.readingmonitor.service.BookServiceImpl" : getAllBooksByTopic
+	  	 deactivate "com.readingmonitor.dao.BookDaoImpl"
+
+  			  	"com.readingmonitor.service.BookServiceImpl" ->>  "com.readingmonitor.controller.BookController" : displayAllBooksByTopic
+	  	 deactivate "com.readingmonitor.service.BookServiceImpl"
+
+
+@enduml
